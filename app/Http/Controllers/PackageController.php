@@ -3,16 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Package;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class PackageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Response
     {
-        //
+        return Inertia::render('Packages/Index', [
+
+        ]);
     }
 
     /**
@@ -26,9 +31,15 @@ class PackageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'package' => 'required|string|max:255',
+        ]);
+
+        $request->user()->packages()->create($validated);
+
+        return redirect(route('packages.index'));
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\PackageController;
-use App\Http\Controllers\PeopleController;
+use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +38,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('packages', PackageController::class)
+    ->only(['index','store', 'update', 'destroy'])
+    ->middleware(['auth', 'verified']);
+
+Route::resource('persons', PersonController::class)
     ->only(['index','store', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 

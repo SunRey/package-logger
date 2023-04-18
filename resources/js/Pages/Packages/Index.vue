@@ -6,7 +6,7 @@ import { useForm, Head } from '@inertiajs/vue3';
 
 const form = useForm({
     package: '',
-    people: '',
+    person: '',
 });
 </script>
 

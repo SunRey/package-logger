@@ -37,7 +37,7 @@ class PackageController extends Controller
             'package' => 'required|string|max:255',
         ]);
 
-        $request->user()->packages()->create($validated);
+        $request->personrout()->packages()->create($validated);
 
         return redirect(route('packages.index'));
     }

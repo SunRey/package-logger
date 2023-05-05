@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePersonRequest;
 use App\Http\Requests\UpdatePersonRequest;
+use Illuminate\Http\RedirectResponse;
 use App\Models\Person;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class PersonController extends Controller
 {
@@ -13,7 +16,9 @@ class PersonController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Persons/Index', [
+            'persons' => Person::all(),
+        ]);
     }
 
     /**
@@ -27,9 +32,20 @@ class PersonController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePersonRequest $request)
+    public function store(StorePersonRequest $request): RedirectResponse
     {
         //
+
+        $validated = $request->safe()->all();
+
+        Person::create([
+            'first_name' => $validated['first_name'],
+            'last_name' => $validated['last_name'],
+            'group' => $validated['group'],
+        ]);
+
+        return redirect(route('persons.index'));
+
     }
 
     /**

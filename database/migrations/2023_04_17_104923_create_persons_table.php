@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('persons', function (Blueprint $table) {
             $table->id();
-            $table->string('firstName')->nullable('false');
-            $table->string('lastName')->nullable('true');
+            $table->string('first_name')->nullable('false');
+            $table->string('last_name')->nullable('true');
             $table->string('group')->nullable('true');
+            $table->string('room')->nullable('ture');
             $table->string('email')->nullable('ture');
             $table->timestamps();
         });

@@ -28,7 +28,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard', [
+        'person' => 'tester',
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -38,11 +40,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('packages', PackageController::class)
-    ->only(['index','store', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
 Route::resource('persons', PersonController::class)
-    ->only(['index','store', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

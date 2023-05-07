@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
             $table->string('tracking')->nullable('false');
-            $table->foreignId('person_id')->constrained();
+            $table->foreignId('persons_id')->constrained();
             $table->date('deliverDate')->default(Carbon::now());
             $table->date('pickupDate')->nullable('true');
             $table->boolean('delivered')->default(0);

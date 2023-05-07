@@ -12,6 +12,7 @@ class Package extends Model
 
     protected $fillable = [
         'tracking',
+        'persons_id'
     ];
 
     /**

@@ -20,10 +20,10 @@ class Person extends Model
 
     public function packages(): HasMany
     {
-      return $this->hasMany(Package::class);
+      return $this->hasMany(Package::class, foreignKey: 'persons_id');
     }
 
-    public function getNameAttribute()
+    public function getNameAttribute(): string
     {
         return $this->first_name.' '.$this->last_name;
     }

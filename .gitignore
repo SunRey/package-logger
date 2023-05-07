@@ -19,4 +19,4 @@ yarn-error.log
 /.vscode
 /.env-sqlite
 /.env-sql
-
+/storage/debugbar
